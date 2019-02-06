@@ -1,0 +1,51 @@
+<app-page-header [headerIcon]="headerIcon" [headerTitle]="headerTitle"></app-page-header>
+
+<div class="row">
+  <div class="col-10">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
+      </div>
+      <input autocomplete="off" (keyup)="onSearch('phone')" name="phone" [(ngModel)]="phone" type="tel" class="form-control" placeholder="Username" placeholder="Search By Phone...">
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-10"></div>
+  <div class="col-2">
+    <a class="btn btn-primary" href="" routerLink="/add-customer"><i class="fas fa-plus-circle"></i>Add Customer</a>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Phone</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr (mouseenter)="showTools($event)" (mouseleave)="hideTools($event)" *ngFor="let customer of customers; let x = index">
+          <td>
+            {{ x + 1 }}
+            <span class="ml-3 invisible">
+              <a href="" class="text-secondary" routerLink="/customers/{{ customer.id }}"><i class="fas fa-eye"></i></a>
+              <a href="" class="text-secondary ml-3" routerLink="/customers/{{ customer.id }}/edit"><i class="fas fa-pen"></i></a>
+              <a (click)="onDeleteCustomer(customer.id, $event)" href="" class="text-secondary ml-3"><i class="fas fa-trash-alt"></i></a>
+            </span>
+          </td>
+          <td>{{ customer.firstName }}</td>
+          <td>{{ customer.lastName }}</td>
+          <td>{{ customer.phone }}</td>
+          <td>{{ customer.email }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
